@@ -1,0 +1,147 @@
+<html>
+    
+    <head>
+        <title>Search Engine - ProjectAC</title>
+
+        <style>
+            
+            body
+            {
+                font-family: "Arial", "Ubuntu", "Microsoft Yahei", "Courier New";
+                font-size: 18px; 
+                line-height: 27px;
+            }
+
+            .block 
+            {
+                padding: 10px 60px 10px 60px;
+            }
+
+            .red
+            {
+                color: rgb(255, 100, 100);
+                background-color: rgb(255, 220, 220);
+
+                box-shadow: 5px 5px 0px rgba(255, 220, 220, 0.6);
+            }
+
+            input
+            {
+                outline: none;
+                transition: all 0.5s;
+                height: 50px;
+                font-size: 27px;
+                padding: 0px 10px 0px 10px;
+                -webkit-appearance: none;
+            }
+
+            input:focus
+            {
+                transition: all 0.5s;
+                -webkit-appearance: none;
+                box-shadow: 0px 0px 15px #00fcff;
+            }
+
+            button
+            {
+                transition: all 0.5s;
+                border: none;
+                padding: 0px 20px 0px 20px;
+                height: 50px;
+                font-size: 27px;
+                color: white;
+                background-color: #6060a0;
+            }
+            
+            button:hover
+            {
+                transition: all 0.5s;
+                background-color: #b0b0ff;
+                color: black;
+            }
+
+            #results
+            {
+                margin-left: 50px;
+                margin-top: 60px;
+                margin-bottom: 60px;
+                width: 640px;
+            }
+
+            .result
+            {
+                transition: all 0.7s;
+                font-size: 27px;
+                padding: 40px 0px 40px 0px;
+                color: #323232; 
+                display: block;
+            }
+
+            a
+            {
+                text-decoration: none;
+            }
+
+            font
+            {
+                text-decoration: underline;
+                color: green;
+                font-size: 14px;
+            }
+
+        </style>
+        
+        <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery
+/jquery-1.4.min.js"></script>
+        <script>
+            function query()
+            {
+                $('#results')[0].innerHTML = 'Searching, please wait...'
+
+                var begin = new Date()
+                let key = $('#key')[0].value
+
+                $.get('http://localhost:23333/query?key=' + key, function (data, status){
+
+                        var end = new Date();
+                        let res = '<div style="margin-bottom:30px;">' + data.length + ' related records found in ' + (end.valueOf() - begin.valueOf())  + 'ms. </div>'
+
+                        console.log(res)
+
+                        for (let x of data)
+                        {
+                            res += '\
+                                <a href="http://' + x[0][2]+'">\
+                                    <div class="result">\
+                                        ' + x[0][1] + '<br/>\
+                                        <font>' + x[0][2] +'</font>\
+                                    </div>\
+                                </a>'
+                        }
+                        $('#results')[0].innerHTML = res
+                    })
+            }
+        </script>
+    </head>
+
+    <body>
+        <div class="block red">
+            This engine is temporarily under training & testing. <br/>
+            Now it is only for Shakespeare's Collections.
+        </div>
+
+        <div style="height: 50px;">
+        </div>
+        
+        <div>
+            <image src="{{ url_for('static', filename='images/logo.png') }}" style="width: 50px; width: 50px; float: left"/>
+            <input id="key" type="text" style="width: 640px;" placeholder="Search for whatever you like..." />
+            <button onclick="query()">Search</button>
+        </div>
+
+        <div id="results">
+            
+        </div>
+    </body>
+
+</html>
