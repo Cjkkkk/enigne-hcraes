@@ -1,7 +1,7 @@
 def testDatabase():
     import sqlite3
 
-    conn = sqlite3.connect('./Prehandle/PretreatmentInfo.db')
+    conn = sqlite3.connect('./preHandle/PretreatmentInfo.db')
     cursor = conn.cursor()
     cursor.execute('''
                       SELECT * from InvertedFile
@@ -13,7 +13,7 @@ def testDatabase():
         print(i)
 
     # cursor.execute('''
-                    # SELECT * from urlTitleIndex''')
+    # SELECT * from urlTitleIndex''')
     cursor.execute('''
                     SELECT * from tf''')
     b = cursor.fetchall()
@@ -21,5 +21,6 @@ def testDatabase():
         print(i)
 
     conn.close()
+
 
 testDatabase()

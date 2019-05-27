@@ -11,10 +11,9 @@ class: Document
 
 
 class Document(tuple):
-    def __init__(self,tuple=None):
+    def __init__(self, tuple=None):
         tuple.__init__(tuple)
         self.name = self[0]
         self.title = self[1]
         self.url = self[2]
         self.clusters = None
-    

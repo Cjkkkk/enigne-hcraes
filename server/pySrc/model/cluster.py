@@ -27,7 +27,7 @@ def is_literature_file(file):
 
 if __name__ == '__main__':
     # set the path
-    txt_dir = '../../Preparement/'
+    txt_dir = '../../preparement/'
     files = os.listdir(txt_dir)
     files = filter(is_literature_file,files)
 

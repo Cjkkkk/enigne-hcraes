@@ -20,7 +20,7 @@ def is_literature_file(file):
 
 if __name__ == '__main__':
     # func: test whether the file is a test file.
-    txt_dir = '../../Preparement/'
+    txt_dir = '../../preparement/'
     files = os.listdir(txt_dir)
     files = filter(is_literature_file,files)
     # print(list(files))

@@ -6,5 +6,5 @@ class: RankMethodBase
 
 
 class RankMethodBase(object):
-    def rank(self,documents,sentence):
+    def rank(self, documents, sentence):
         raise NotImplementedError
