@@ -1,0 +1,83 @@
+body
+{
+    font-family: "Arial", "Ubuntu", "Microsoft Yahei", "Courier New";
+    font-size: 18px;
+    line-height: 27px;
+}
+
+.block
+{
+    padding: 10px 60px 10px 60px;
+}
+
+.red
+{
+    color: rgb(255, 100, 100);
+    background-color: rgb(255, 220, 220);
+
+    box-shadow: 5px 5px 0px rgba(255, 220, 220, 0.6);
+}
+
+input{
+    border: none;
+    padding: 10px;
+    margin: 10px;
+    height: 100px;
+    width: 500px;
+    border:1px solid #eaeaea;
+    bor
+    outline:none;
+}
+input:hover{
+    border-color: #a0a0a0 #b9b9b9 #b9b9b9 #b9b9b9;
+}
+input:focus{
+    border-color:#4d90fe;
+}
+
+button
+{
+    transition: all 0.5s;
+    border: none;
+    padding: 0px 20px 0px 20px;
+    height: 50px;
+    font-size: 27px;
+    color: white;
+    background-color: #6060a0;
+}
+
+button:hover
+{
+    transition: all 0.5s;
+    background-color: #b0b0ff;
+    color: black;
+}
+
+#results
+{
+    margin-left: 50px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    width: 640px;
+}
+
+.result
+{
+    transition: all 0.7s;
+    font-size: 27px;
+    padding: 40px 0px 40px 0px;
+    color: #323232;
+    display: block;
+}
+
+a
+{
+    text-decoration: none;
+}
+
+font
+{
+    text-decoration: underline;
+    color: green;
+    font-size: 14px;
+}

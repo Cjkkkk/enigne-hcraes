@@ -1,8 +1,8 @@
 from flask import request, session
-from SearchServer import app
-from SearchServer.ACEssentials import response
+from searchServer import app
+from searchServer.ACEssentials import response
+
 
 @app.route('/test')
 def test():
-
     return response.error(response.OK)

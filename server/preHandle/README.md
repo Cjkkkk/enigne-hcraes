@@ -1,14 +1,14 @@
-FileHanleÄ£¿é£º
-Ô¤´¦ÀíÄ£¿é£¬ÄÚÓÐpretreatmentµÄ·½·¨£¬½ÓÊÜËÄ¸ö²ÎÊý(addpre, addpost, numOfFile, addlist)£¬ÒòÎªÒªÅúÁ¿´¦ÀíÎÄ¼þ£¬ÎÄ¼þµÄµØÖ·¸ñÊ½Îª'addpre+i+addposrt'£¬i´ú±íÕûÊý¡£numOfFile´ú±íÎÄ¼þµÄÊýÄ¿£¬addlist´ú±íÎÄ¼þÓë¶ÔÓ¦urlµÄË÷Òý±í¡£
-¸Ãº¯ÊýµÄ¹¦ÄÜÓÐÔ¤´¦Àí£¬½«½á¹û´æÈëÊý¾Ý¿âPretreatmentInfo.dbÖÐ£¬¹²ÓÐ5ÕÅ±í¡£
-InvertedFile±í£¬ÄÚÓÐÁ½¸öÊôÐÔ£¨WORD£¬FileNumber£©£¬WORD´ú±íµ¥´Ê£¬FileNumberÊÇÓÉ¶ÔÓ¦ÎÄ¼þ×é³ÉµÄ×Ö·û´®£¬ÎÄ¼þ¼äÓÃ¿Õ¸ñ·Ö¸ô¡£
+FileHanleÄ£ï¿½é£º
+Ô¤ï¿½ï¿½ï¿½ï¿½Ä£ï¿½é£¬ï¿½ï¿½ï¿½ï¿½pretreatmentï¿½Ä·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½(addpre, addpost, numOfFile, addlist)ï¿½ï¿½ï¿½ï¿½ÎªÒªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Äµï¿½Ö·ï¿½ï¿½Ê½Îª'addpre+i+addposrt'ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½numOfFileï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½addlistï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Ó¦urlï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½Ãºï¿½ï¿½ï¿½ï¿½Ä¹ï¿½ï¿½ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½PretreatmentInfo.dbï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½5ï¿½Å±ï¿½
+InvertedFileï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô£ï¿½WORDï¿½ï¿½FileNumberï¿½ï¿½ï¿½ï¿½WORDï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½FileNumberï¿½ï¿½ï¿½É¶ï¿½Ó¦ï¿½Ä¼ï¿½ï¿½ï¿½Éµï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Ã¿Õ¸ï¿½Ö¸ï¿½ï¿½ï¿½
 
-tf_idf±í£¬ÄÚÓÐÈý¸öÊôÐÔ£¨FileID£¬WORD£¬VALUE£©£¬WORD´ú±íµ¥´Ê£¬FileID´ú±íÎÄ¼þÐòºÅ£¬VALUE´ú±í¸Ã´Ê¶ÔÓ¦µÄTF-IDFµÄÖµ¡£
+tf_idfï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô£ï¿½FileIDï¿½ï¿½WORDï¿½ï¿½VALUEï¿½ï¿½ï¿½ï¿½WORDï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½FileIDï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Å£ï¿½VALUEï¿½ï¿½ï¿½ï¿½Ã´Ê¶ï¿½Ó¦ï¿½ï¿½TF-IDFï¿½ï¿½Öµï¿½ï¿½
 
-urlTitleIndex±í£¬ÄÚÓÐÈý¸öÊôÐÔ£¨FileID£¬Title£¬URL£©£¬FileID´ú±íÎÄ¼þÐòºÅ£¬Title´ú±íÎÄÕÂµÄ±êÌâ£¬URL´ú±í¶ÔÓ¦µÄURL¡£
+urlTitleIndexï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô£ï¿½FileIDï¿½ï¿½Titleï¿½ï¿½URLï¿½ï¿½ï¿½ï¿½FileIDï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Å£ï¿½Titleï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÂµÄ±ï¿½ï¿½â£¬URLï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½URLï¿½ï¿½
 
-ÕâÀïÒÑ¾­Ô¤´¦ÀíÁË±êµã·ûºÅ£¬ÓÉÓÚtf-idf·½·¨µÄ¹ØÏµ²»ÔÙ´¦Àí³£ÓÃ´Ê¡£
+ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½Ë±ï¿½ï¿½ï¿½ï¿½Å£ï¿½ï¿½ï¿½ï¿½ï¿½tf-idfï¿½ï¿½ï¿½ï¿½ï¿½Ä¹ï¿½Ïµï¿½ï¿½ï¿½Ù´ï¿½ï¿½ï¿½ï¿½Ã´Ê¡ï¿½
 
 
-SearchDemoÄ£¿é
-ËÑË÷Ä£¿é£¬ÄÚÓÐSearchº¯Êý£¬½ÓÊÜÒ»¸ö×Ö·û´®×ö²ÎÊý£¬·µ»ØÒ»¸öÁÐ±í¡£ÁÐ±íÖÐÃ¿Ò»¸öÔªËØÊÇÒ»¸öÔª×é£¬£¨ÎÄ¼þÐòºÅ ÕûÊý£¬ÎÄ¼þ±êÌâ ×Ö·û´®£¬ÎÄ¼þurl ×Ö·û´®£©
+searchDemoÄ£ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½Ä£ï¿½é£¬ï¿½ï¿½ï¿½ï¿½Searchï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ð±ï¿½ï¿½Ð±ï¿½ï¿½ï¿½Ã¿Ò»ï¿½ï¿½Ôªï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ôªï¿½é£¬ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½url ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½

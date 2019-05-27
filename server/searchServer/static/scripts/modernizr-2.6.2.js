@@ -140,7 +140,7 @@ window.Modernizr = (function( window, document, undefined ) {
       // when injected with innerHTML. To get around this you need to prepend the 'NoScope' element
       // with a 'scoped' element, in our case the soft-hyphen entity as it won't mess with our measurements.
       // msdn.microsoft.com/en-us/library/ms533897%28VS.85%29.aspx
-      // Documents served as xml will throw if using &shy; so use xml friendly encoded version. See issue #277
+      // documents served as xml will throw if using &shy; so use xml friendly encoded version. See issue #277
       style = ['&#173;','<style id="s', mod, '">', rule, '</style>'].join('');
       div.id = mod;
       // IE6 will false positive on some tests due to the style element inside the test div somehow interfering offsetHeight, so insert it into body or fakebody.
@@ -474,7 +474,7 @@ window.Modernizr = (function( window, document, undefined ) {
     tests['touch'] = function() {
         var bool;
 
-        if(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
+        if(('ontouchstart' in window) || window.documentTouch && document instanceof documentTouch) {
           bool = true;
         } else {
           injectElementWithStyles(['@media (',prefixes.join('touch-enabled),('),mod,')','{#modernizr{top:9px;position:absolute}}'].join(''), function( node ) {
@@ -1064,10 +1064,10 @@ window.Modernizr = (function( window, document, undefined ) {
             supportsUnknownElements = a.childNodes.length == 1 || (function() {
               // assign a false positive if unable to shiv
               (document.createElement)('a');
-              var frag = document.createDocumentFragment();
+              var frag = document.createdocumentFragment();
               return (
                 typeof frag.cloneNode == 'undefined' ||
-                typeof frag.createDocumentFragment == 'undefined' ||
+                typeof frag.createdocumentFragment == 'undefined' ||
                 typeof frag.createElement == 'undefined'
               );
             }());
@@ -1083,13 +1083,13 @@ window.Modernizr = (function( window, document, undefined ) {
       /**
        * Creates a style sheet with the given CSS text and adds it to the document.
        * @private
-       * @param {Document} ownerDocument The document.
+       * @param {document} ownerdocument The document.
        * @param {String} cssText The CSS text.
        * @returns {StyleSheet} The style element.
        */
-      function addStyleSheet(ownerDocument, cssText) {
-        var p = ownerDocument.createElement('p'),
-            parent = ownerDocument.getElementsByTagName('head')[0] || ownerDocument.documentElement;
+      function addStyleSheet(ownerdocument, cssText) {
+        var p = ownerdocument.createElement('p'),
+            parent = ownerdocument.getElementsByTagName('head')[0] || ownerdocument.documentElement;
 
         p.innerHTML = 'x<style>' + cssText + '</style>';
         return parent.insertBefore(p.lastChild, parent.firstChild);
@@ -1108,15 +1108,15 @@ window.Modernizr = (function( window, document, undefined ) {
         /**
        * Returns the data associated to the given document
        * @private
-       * @param {Document} ownerDocument The document.
+       * @param {document} ownerdocument The document.
        * @returns {Object} An object of data.
        */
-      function getExpandoData(ownerDocument) {
-        var data = expandoData[ownerDocument[expando]];
+      function getExpandoData(ownerdocument) {
+        var data = expandoData[ownerdocument[expando]];
         if (!data) {
             data = {};
             expanID++;
-            ownerDocument[expando] = expanID;
+            ownerdocument[expando] = expanID;
             expandoData[expanID] = data;
         }
         return data;
@@ -1126,18 +1126,18 @@ window.Modernizr = (function( window, document, undefined ) {
        * returns a shived element for the given nodeName and document
        * @memberOf html5
        * @param {String} nodeName name of the element
-       * @param {Document} ownerDocument The context document.
+       * @param {document} ownerdocument The context document.
        * @returns {Object} The shived element.
        */
-      function createElement(nodeName, ownerDocument, data){
-        if (!ownerDocument) {
-            ownerDocument = document;
+      function createElement(nodeName, ownerdocument, data){
+        if (!ownerdocument) {
+            ownerdocument = document;
         }
         if(supportsUnknownElements){
-            return ownerDocument.createElement(nodeName);
+            return ownerdocument.createElement(nodeName);
         }
         if (!data) {
-            data = getExpandoData(ownerDocument);
+            data = getExpandoData(ownerdocument);
         }
         var node;
 
@@ -1160,19 +1160,19 @@ window.Modernizr = (function( window, document, undefined ) {
       }
 
       /**
-       * returns a shived DocumentFragment for the given document
+       * returns a shived documentFragment for the given document
        * @memberOf html5
-       * @param {Document} ownerDocument The context document.
-       * @returns {Object} The shived DocumentFragment.
+       * @param {document} ownerdocument The context document.
+       * @returns {Object} The shived documentFragment.
        */
-      function createDocumentFragment(ownerDocument, data){
-        if (!ownerDocument) {
-            ownerDocument = document;
+      function createdocumentFragment(ownerdocument, data){
+        if (!ownerdocument) {
+            ownerdocument = document;
         }
         if(supportsUnknownElements){
-            return ownerDocument.createDocumentFragment();
+            return ownerdocument.createdocumentFragment();
         }
-        data = data || getExpandoData(ownerDocument);
+        data = data || getExpandoData(ownerdocument);
         var clone = data.frag.cloneNode(),
             i = 0,
             elems = getElements(),
@@ -1184,29 +1184,29 @@ window.Modernizr = (function( window, document, undefined ) {
       }
 
       /**
-       * Shivs the `createElement` and `createDocumentFragment` methods of the document.
+       * Shivs the `createElement` and `createdocumentFragment` methods of the document.
        * @private
-       * @param {Document|DocumentFragment} ownerDocument The document.
+       * @param {document|documentFragment} ownerdocument The document.
        * @param {Object} data of the document.
        */
-      function shivMethods(ownerDocument, data) {
+      function shivMethods(ownerdocument, data) {
         if (!data.cache) {
             data.cache = {};
-            data.createElem = ownerDocument.createElement;
-            data.createFrag = ownerDocument.createDocumentFragment;
+            data.createElem = ownerdocument.createElement;
+            data.createFrag = ownerdocument.createdocumentFragment;
             data.frag = data.createFrag();
         }
 
 
-        ownerDocument.createElement = function(nodeName) {
+        ownerdocument.createElement = function(nodeName) {
           //abort shiv
           if (!html5.shivMethods) {
               return data.createElem(nodeName);
           }
-          return createElement(nodeName, ownerDocument, data);
+          return createElement(nodeName, ownerdocument, data);
         };
 
-        ownerDocument.createDocumentFragment = Function('h,f', 'return function(){' +
+        ownerdocument.createdocumentFragment = Function('h,f', 'return function(){' +
           'var n=f.cloneNode(),c=n.createElement;' +
           'h.shivMethods&&(' +
             // unroll the `createElement` calls
@@ -1224,17 +1224,17 @@ window.Modernizr = (function( window, document, undefined ) {
       /**
        * Shivs the given document.
        * @memberOf html5
-       * @param {Document} ownerDocument The document to shiv.
-       * @returns {Document} The shived document.
+       * @param {document} ownerdocument The document to shiv.
+       * @returns {document} The shived document.
        */
-      function shivDocument(ownerDocument) {
-        if (!ownerDocument) {
-            ownerDocument = document;
+      function shivdocument(ownerdocument) {
+        if (!ownerdocument) {
+            ownerdocument = document;
         }
-        var data = getExpandoData(ownerDocument);
+        var data = getExpandoData(ownerdocument);
 
         if (html5.shivCSS && !supportsHtml5Styles && !data.hasCSS) {
-          data.hasCSS = !!addStyleSheet(ownerDocument,
+          data.hasCSS = !!addStyleSheet(ownerdocument,
             // corrects block display not defined in IE6/7/8/9
             'article,aside,figcaption,figure,footer,header,hgroup,nav,section{display:block}' +
             // adds styling not present in IE6/7/8/9
@@ -1242,9 +1242,9 @@ window.Modernizr = (function( window, document, undefined ) {
           );
         }
         if (!supportsUnknownElements) {
-          shivMethods(ownerDocument, data);
+          shivMethods(ownerdocument, data);
         }
-        return ownerDocument;
+        return ownerdocument;
       }
 
       /*--------------------------------------------------------------------------*/
@@ -1282,7 +1282,7 @@ window.Modernizr = (function( window, document, undefined ) {
         'supportsUnknownElements': supportsUnknownElements,
 
         /**
-         * A flag to indicate that the document's `createElement` and `createDocumentFragment`
+         * A flag to indicate that the document's `createElement` and `createdocumentFragment`
          * methods should be overwritten.
          * @memberOf html5
          * @type Boolean
@@ -1297,13 +1297,13 @@ window.Modernizr = (function( window, document, undefined ) {
         'type': 'default',
 
         // shivs the document according to the specified `html5` object options
-        'shivDocument': shivDocument,
+        'shivdocument': shivdocument,
 
         //creates a shived element
         createElement: createElement,
 
         //creates a shived documentFragment
-        createDocumentFragment: createDocumentFragment
+        createdocumentFragment: createdocumentFragment
       };
 
       /*--------------------------------------------------------------------------*/
@@ -1312,7 +1312,7 @@ window.Modernizr = (function( window, document, undefined ) {
       window.html5 = html5;
 
       // shiv the document
-      shivDocument(document);
+      shivdocument(document);
 
     }(this, document));
     /*>>shiv*/

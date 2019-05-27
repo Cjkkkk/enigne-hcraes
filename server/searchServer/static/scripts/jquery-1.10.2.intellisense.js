@@ -324,7 +324,7 @@ intellisense.annotate(jQuery, {
     /// <signature>
     ///   <summary>Parses a string into an XML document.</summary>
     ///   <param name="data" type="String">a well-formed XML string to be parsed</param>
-    ///   <returns type="XMLDocument" />
+    ///   <returns type="XMLdocument" />
     /// </signature>
   },
   'post': function() {
@@ -1550,7 +1550,7 @@ intellisense.annotate(jQuery.fn, {
     /// <signature>
     ///   <summary>Accepts a string containing a CSS selector which is then used to match a set of elements.</summary>
     ///   <param name="selector" type="String">A string containing a selector expression</param>
-    ///   <param name="context" type="jQuery">A DOM Element, Document, or jQuery to use as context</param>
+    ///   <param name="context" type="jQuery">A DOM Element, document, or jQuery to use as context</param>
     ///   <returns type="jQuery" />
     /// </signature>
     /// <signature>
@@ -2643,7 +2643,7 @@ intellisense.annotate(window, {
     /// <signature>
     ///   <summary>Accepts a string containing a CSS selector which is then used to match a set of elements.</summary>
     ///   <param name="selector" type="String">A string containing a selector expression</param>
-    ///   <param name="context" type="jQuery">A DOM Element, Document, or jQuery to use as context</param>
+    ///   <param name="context" type="jQuery">A DOM Element, document, or jQuery to use as context</param>
     ///   <returns type="jQuery" />
     /// </signature>
     /// <signature>

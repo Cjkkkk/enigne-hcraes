@@ -1,5 +1,5 @@
-from Prehandle.SearchDemo import Search
-from PySrc.RankDemo import Rank1
+from preHandle.searchDemo import Search
+from pySrc.rankDemo import Rank1
 import pandas as pd
 import pickle
 

@@ -1,6 +1,7 @@
 #  Function for the pretreatment,input include the address prefix. address postfix,
 #  the number of the files and the address of the list
 
+
 def pretreatment(addpre, addpost, numOfFile, addlist):
     # The libraries that we need to import, nltk is a natural
     # language processing library. We use it to handle the texts.

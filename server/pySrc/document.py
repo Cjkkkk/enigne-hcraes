@@ -1,7 +1,7 @@
 '''
-class: Document
+class: document
     inherit: tuple
-    description: inheriting from tuple, Document class can just be converted from sql cursor.fetchall(),
+    description: inheriting from tuple, document class can just be converted from sql cursor.fetchall(),
     attributes:
         name: document name
         title: document title
@@ -10,7 +10,7 @@ class: Document
 '''
 
 
-class Document(tuple):
+class document(tuple):
     def __init__(self, tuple=None):
         tuple.__init__(tuple)
         self.name = self[0]

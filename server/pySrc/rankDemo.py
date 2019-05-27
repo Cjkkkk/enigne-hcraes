@@ -1,4 +1,4 @@
-from PySrc.RankMethodBase import RankMethodBase
+from pySrc.rankMethodBase import rankMethodBase
 from gensim import models
 from sklearn.externals import joblib
 import numpy as np
@@ -8,13 +8,13 @@ import scipy.stats as stats
 
 '''
 class Rank1
-    inherit: RankMethodBase
+    inherit: rankMethodBase
     description: our first rank method, maybe the last one before peer review
     method: rank: rank the documents inputed by the input string.
 '''
 
 
-class Rank1(RankMethodBase):
+class Rank1(rankMethodBase):
     def rank(self, documents, sentence):
         # load the machine learning model we have pretrained.
         # pca is the principle components analysis model

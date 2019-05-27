@@ -163,7 +163,7 @@ jQuery.fn = jQuery.prototype = {
 					// scripts is true for back-compat
 					jQuery.merge( this, jQuery.parseHTML(
 						match[1],
-						context && context.nodeType ? context.ownerDocument || context : document,
+						context && context.nodeType ? context.ownerdocument || context : document,
 						true
 					) );
 
@@ -1036,7 +1036,7 @@ var i,
 	sortInput,
 
 	// Local document vars
-	setDocument,
+	setdocument,
 	document,
 	docElem,
 	documentIsHTML,
@@ -1199,8 +1199,8 @@ function Sizzle( selector, context, results, seed ) {
 		// QSA vars
 		i, groups, old, nid, newContext, newSelector;
 
-	if ( ( context ? context.ownerDocument || context : preferredDoc ) !== document ) {
-		setDocument( context );
+	if ( ( context ? context.ownerdocument || context : preferredDoc ) !== document ) {
+		setdocument( context );
 	}
 
 	context = context || document;
@@ -1236,7 +1236,7 @@ function Sizzle( selector, context, results, seed ) {
 					}
 				} else {
 					// Context is not a document
-					if ( context.ownerDocument && (elem = context.ownerDocument.getElementById( m )) &&
+					if ( context.ownerdocument && (elem = context.ownerdocument.getElementById( m )) &&
 						contains( context, elem ) && elem.id === m ) {
 						results.push( elem );
 						return results;
@@ -1447,7 +1447,7 @@ function createPositionalPseudo( fn ) {
 isXML = Sizzle.isXML = function( elem ) {
 	// documentElement is verified for cases where it doesn't yet exist
 	// (such as loading iframes in IE - #4833)
-	var documentElement = elem && (elem.ownerDocument || elem).documentElement;
+	var documentElement = elem && (elem.ownerdocument || elem).documentElement;
 	return documentElement ? documentElement.nodeName !== "HTML" : false;
 };
 
@@ -1459,8 +1459,8 @@ support = Sizzle.support = {};
  * @param {Element|Object} [doc] An element or document object to use to set the document
  * @returns {Object} Returns the current document
  */
-setDocument = Sizzle.setDocument = function( node ) {
-	var doc = node ? node.ownerDocument || node : preferredDoc,
+setdocument = Sizzle.setdocument = function( node ) {
+	var doc = node ? node.ownerdocument || node : preferredDoc,
 		parent = doc.defaultView;
 
 	// If no document and documentElement is available, return
@@ -1481,7 +1481,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 	// IE6-8 do not support the defaultView property so parent will be undefined
 	if ( parent && parent.attachEvent && parent !== parent.top ) {
 		parent.attachEvent( "onbeforeunload", function() {
-			setDocument();
+			setdocument();
 		});
 	}
 
@@ -1681,14 +1681,14 @@ setDocument = Sizzle.setDocument = function( node ) {
 	// Element contains another
 	// Purposefully does not implement inclusive descendent
 	// As in, an element does not contain itself
-	contains = rnative.test( docElem.contains ) || docElem.compareDocumentPosition ?
+	contains = rnative.test( docElem.contains ) || docElem.comparedocumentPosition ?
 		function( a, b ) {
 			var adown = a.nodeType === 9 ? a.documentElement : a,
 				bup = b && b.parentNode;
 			return a === bup || !!( bup && bup.nodeType === 1 && (
 				adown.contains ?
 					adown.contains( bup ) :
-					a.compareDocumentPosition && a.compareDocumentPosition( bup ) & 16
+					a.comparedocumentPosition && a.comparedocumentPosition( bup ) & 16
 			));
 		} :
 		function( a, b ) {
@@ -1705,8 +1705,8 @@ setDocument = Sizzle.setDocument = function( node ) {
 	/* Sorting
 	---------------------------------------------------------------------- */
 
-	// Document order sorting
-	sortOrder = docElem.compareDocumentPosition ?
+	// document order sorting
+	sortOrder = docElem.comparedocumentPosition ?
 	function( a, b ) {
 
 		// Flag for duplicate removal
@@ -1715,12 +1715,12 @@ setDocument = Sizzle.setDocument = function( node ) {
 			return 0;
 		}
 
-		var compare = b.compareDocumentPosition && a.compareDocumentPosition && a.compareDocumentPosition( b );
+		var compare = b.comparedocumentPosition && a.comparedocumentPosition && a.comparedocumentPosition( b );
 
 		if ( compare ) {
 			// Disconnected nodes
 			if ( compare & 1 ||
-				(!support.sortDetached && b.compareDocumentPosition( a ) === compare) ) {
+				(!support.sortDetached && b.comparedocumentPosition( a ) === compare) ) {
 
 				// Choose the first element that is related to our preferred document
 				if ( a === doc || contains(preferredDoc, a) ) {
@@ -1740,7 +1740,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 		}
 
 		// Not directly comparable, sort on existence of method
-		return a.compareDocumentPosition ? -1 : 1;
+		return a.comparedocumentPosition ? -1 : 1;
 	} :
 	function( a, b ) {
 		var cur,
@@ -1804,8 +1804,8 @@ Sizzle.matches = function( expr, elements ) {
 
 Sizzle.matchesSelector = function( elem, expr ) {
 	// Set document vars if needed
-	if ( ( elem.ownerDocument || elem ) !== document ) {
-		setDocument( elem );
+	if ( ( elem.ownerdocument || elem ) !== document ) {
+		setdocument( elem );
 	}
 
 	// Make sure that attribute selectors are quoted
@@ -1833,16 +1833,16 @@ Sizzle.matchesSelector = function( elem, expr ) {
 
 Sizzle.contains = function( context, elem ) {
 	// Set document vars if needed
-	if ( ( context.ownerDocument || context ) !== document ) {
-		setDocument( context );
+	if ( ( context.ownerdocument || context ) !== document ) {
+		setdocument( context );
 	}
 	return contains( context, elem );
 };
 
 Sizzle.attr = function( elem, name ) {
 	// Set document vars if needed
-	if ( ( elem.ownerDocument || elem ) !== document ) {
-		setDocument( elem );
+	if ( ( elem.ownerdocument || elem ) !== document ) {
+		setdocument( elem );
 	}
 
 	var fn = Expr.attrHandle[ name.toLowerCase() ],
@@ -1865,7 +1865,7 @@ Sizzle.error = function( msg ) {
 };
 
 /**
- * Document sorting and removing duplicates
+ * document sorting and removing duplicates
  * @param {ArrayLike} results
  */
 Sizzle.uniqueSort = function( results ) {
@@ -2930,13 +2930,13 @@ support.sortStable = expando.split("").sort( sortOrder ).join("") === expando;
 support.detectDuplicates = hasDuplicate;
 
 // Initialize against the default document
-setDocument();
+setdocument();
 
 // Support: Webkit<537.32 - Safari 6.0.3/Chrome 25 (fixed in Chrome 27)
 // Detached nodes confoundingly follow *each other*
 support.sortDetached = assert(function( div1 ) {
 	// Should return 1, but returns 4 (following)
-	return div1.compareDocumentPosition( document.createElement("div") ) & 1;
+	return div1.comparedocumentPosition( document.createElement("div") ) & 1;
 });
 
 // Support: IE<8
@@ -3437,7 +3437,7 @@ jQuery.support = (function( support ) {
 	input.setAttribute( "checked", "t" );
 	input.setAttribute( "name", "t" );
 
-	fragment = document.createDocumentFragment();
+	fragment = document.createdocumentFragment();
 	fragment.appendChild( input );
 
 	// Check if a disconnected checkbox will retain its checked
@@ -4578,7 +4578,7 @@ if ( !getSetAttribute ) {
 			var ret = elem.getAttributeNode( name );
 			if ( !ret ) {
 				elem.setAttributeNode(
-					(ret = elem.ownerDocument.createAttribute( name ))
+					(ret = elem.ownerdocument.createAttribute( name ))
 				);
 			}
 
@@ -4989,7 +4989,7 @@ jQuery.event = {
 		}
 
 		// Determine event propagation path in advance, per W3C events spec (#9951)
-		// Bubble up to document, then to window; watch for a global ownerDocument var (#9724)
+		// Bubble up to document, then to window; watch for a global ownerdocument var (#9724)
 		if ( !onlyHandlers && !special.noBubble && !jQuery.isWindow( elem ) ) {
 
 			bubbleType = special.delegateType || type;
@@ -5002,7 +5002,7 @@ jQuery.event = {
 			}
 
 			// Only add window if we got to document (e.g., not plain obj or detached DOM)
-			if ( tmp === (elem.ownerDocument || document) ) {
+			if ( tmp === (elem.ownerdocument || document) ) {
 				eventPath.push( tmp.defaultView || tmp.parentWindow || window );
 			}
 		}
@@ -5248,7 +5248,7 @@ jQuery.event = {
 
 			// Calculate pageX/Y if missing and clientX/Y available
 			if ( event.pageX == null && original.clientX != null ) {
-				eventDoc = event.target.ownerDocument || document;
+				eventDoc = event.target.ownerdocument || document;
 				doc = eventDoc.documentElement;
 				body = eventDoc.body;
 
@@ -5894,7 +5894,7 @@ jQuery.each({
 	},
 	contents: function( elem ) {
 		return jQuery.nodeName( elem, "iframe" ) ?
-			elem.contentDocument || elem.contentWindow.document :
+			elem.contentdocument || elem.contentWindow.document :
 			jQuery.merge( [], elem.childNodes );
 	}
 }, function( name, fn ) {
@@ -5997,7 +5997,7 @@ function winnow( elements, qualifier, not ) {
 }
 function createSafeFragment( document ) {
 	var list = nodeNames.split( "|" ),
-		safeFrag = document.createDocumentFragment();
+		safeFrag = document.createdocumentFragment();
 
 	if ( safeFrag.createElement ) {
 		while ( list.length ) {
@@ -6053,7 +6053,7 @@ jQuery.fn.extend({
 		return jQuery.access( this, function( value ) {
 			return value === undefined ?
 				jQuery.text( this ) :
-				this.empty().append( ( this[0] && this[0].ownerDocument || document ).createTextNode( value ) );
+				this.empty().append( ( this[0] && this[0].ownerdocument || document ).createTextNode( value ) );
 		}, null, value, arguments.length );
 	},
 
@@ -6104,7 +6104,7 @@ jQuery.fn.extend({
 			}
 
 			if ( elem.parentNode ) {
-				if ( keepData && jQuery.contains( elem.ownerDocument, elem ) ) {
+				if ( keepData && jQuery.contains( elem.ownerdocument, elem ) ) {
 					setGlobalEval( getAll( elem, "script" ) );
 				}
 				elem.parentNode.removeChild( elem );
@@ -6248,7 +6248,7 @@ jQuery.fn.extend({
 		}
 
 		if ( l ) {
-			fragment = jQuery.buildFragment( args, this[ 0 ].ownerDocument, false, !allowIntersection && this );
+			fragment = jQuery.buildFragment( args, this[ 0 ].ownerdocument, false, !allowIntersection && this );
 			first = fragment.firstChild;
 
 			if ( fragment.childNodes.length === 1 ) {
@@ -6277,7 +6277,7 @@ jQuery.fn.extend({
 				}
 
 				if ( hasScripts ) {
-					doc = scripts[ scripts.length - 1 ].ownerDocument;
+					doc = scripts[ scripts.length - 1 ].ownerdocument;
 
 					// Reenable scripts
 					jQuery.map( scripts, restoreScript );
@@ -6314,7 +6314,7 @@ function manipulationTarget( elem, content ) {
 		jQuery.nodeName( content.nodeType === 1 ? content : content.firstChild, "tr" ) ?
 
 		elem.getElementsByTagName("tbody")[0] ||
-			elem.appendChild( elem.ownerDocument.createElement("tbody") ) :
+			elem.appendChild( elem.ownerdocument.createElement("tbody") ) :
 		elem;
 }
 
@@ -6495,7 +6495,7 @@ function fixDefaultChecked( elem ) {
 jQuery.extend({
 	clone: function( elem, dataAndEvents, deepDataAndEvents ) {
 		var destElements, node, clone, i, srcElements,
-			inPage = jQuery.contains( elem.ownerDocument, elem );
+			inPage = jQuery.contains( elem.ownerdocument, elem );
 
 		if ( jQuery.support.html5Clone || jQuery.isXMLDoc(elem) || !rnoshimcache.test( "<" + elem.nodeName + ">" ) ) {
 			clone = elem.cloneNode( true );
@@ -6649,7 +6649,7 @@ jQuery.extend({
 				continue;
 			}
 
-			contains = jQuery.contains( elem.ownerDocument, elem );
+			contains = jQuery.contains( elem.ownerdocument, elem );
 
 			// Append to fragment
 			tmp = getAll( safe.appendChild( elem ), "script" );
@@ -6709,7 +6709,7 @@ jQuery.extend({
 						delete cache[ id ];
 
 						// IE does not allow us to delete expando properties from nodes,
-						// nor does it have a removeAttribute function on Document nodes;
+						// nor does it have a removeAttribute function on document nodes;
 						// we must handle all of these cases
 						if ( deleteExpando ) {
 							delete elem[ internalKey ];
@@ -6749,7 +6749,7 @@ jQuery.fn.extend({
 
 		if ( this[0] ) {
 			// The elements to wrap the target around
-			var wrap = jQuery( html, this[0].ownerDocument ).eq(0).clone(true);
+			var wrap = jQuery( html, this[0].ownerdocument ).eq(0).clone(true);
 
 			if ( this[0].parentNode ) {
 				wrap.insertBefore( this[0] );
@@ -6854,7 +6854,7 @@ function isHidden( elem, el ) {
 	// isHidden might be called from jQuery#filter function;
 	// in that case, element will be second argument
 	elem = el || elem;
-	return jQuery.css( elem, "display" ) === "none" || !jQuery.contains( elem.ownerDocument, elem );
+	return jQuery.css( elem, "display" ) === "none" || !jQuery.contains( elem.ownerdocument, elem );
 }
 
 function showHide( elements, show ) {
@@ -7109,7 +7109,7 @@ if ( window.getComputedStyle ) {
 
 		if ( computed ) {
 
-			if ( ret === "" && !jQuery.contains( elem.ownerDocument, elem ) ) {
+			if ( ret === "" && !jQuery.contains( elem.ownerdocument, elem ) ) {
 				ret = jQuery.style( elem, name );
 			}
 
@@ -7293,7 +7293,7 @@ function css_defaultDisplay( nodeName ) {
 			).appendTo( doc.documentElement );
 
 			// Always write a new HTML skeleton so Webkit and Firefox don't choke on reuse
-			doc = ( iframe[0].contentWindow || iframe[0].contentDocument ).document;
+			doc = ( iframe[0].contentWindow || iframe[0].contentdocument ).document;
 			doc.write("<!doctype html><html><body>");
 			doc.close();
 
@@ -7598,7 +7598,7 @@ jQuery.fn.extend({
 	}
 });
 var
-	// Document location
+	// document location
 	ajaxLocParts,
 	ajaxLocation,
 	ajax_nonce = jQuery.now(),
@@ -9569,7 +9569,7 @@ jQuery.fn.offset = function( options ) {
 	var docElem, win,
 		box = { top: 0, left: 0 },
 		elem = this[ 0 ],
-		doc = elem && elem.ownerDocument;
+		doc = elem && elem.ownerdocument;
 
 	if ( !doc ) {
 		return;

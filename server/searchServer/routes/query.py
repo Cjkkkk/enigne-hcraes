@@ -1,7 +1,8 @@
 from flask import request
-from SearchServer import app
-from SearchServer.ACEssentials import response
+from searchServer import app
+from searchServer.ACEssentials import response
 import main
+
 
 @app.route('/query')
 def query():

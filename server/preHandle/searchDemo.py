@@ -1,5 +1,5 @@
 import sqlite3
-from PySrc.Document import Document
+from pySrc.document import document
 
 
 # the function for searching. Input is a string and output is a list
@@ -42,7 +42,7 @@ def Search(inputStr):
                         ''', (i,))
         tempResult = cursor.fetchall()
         if tempResult:
-            document = Document(tempResult[0])
+            document = document(tempResult[0])
             resultList.append(document)
         else:
             pass
