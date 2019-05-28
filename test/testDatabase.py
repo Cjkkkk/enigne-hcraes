@@ -1,7 +1,7 @@
 def testDatabase():
     import sqlite3
 
-    conn = sqlite3.connect('./preHandle/PretreatmentInfo.db')
+    conn = sqlite3.connect('../server/preHandle/PretreatmentInfo.db')
     cursor = conn.cursor()
     cursor.execute('''
                       SELECT * from InvertedFile

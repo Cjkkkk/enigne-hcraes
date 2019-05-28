@@ -9,28 +9,30 @@ AUTHORIZE_FAILED = -2
 PERMISSION_DENIED = -3
 INFORMATION_INCOMPLETE = -4
 
+
 # Send JSON as response to Client
-def JSON(data) :
+def JSON(data):
     return Response(
-      json.dumps(data),
-      mimetype = 'application/json'
+        json.dumps(data),
+        mimetype='application/json'
     )
 
+
 # Send Error info as response to Client
-def error(i, **detail) :
+def error(i, **detail):
     res = {'code': i}
-    if i == OK :
+    if i == OK:
         res['msg'] = 'Everything OK.'
-    elif i == NOT_LOGGED_IN :
+    elif i == NOT_LOGGED_IN:
         res['msg'] = 'Not logged in.'
-    elif i == AUTHORIZE_FAILED :
+    elif i == AUTHORIZE_FAILED:
         res['msg'] = 'Authorize failed.'
-    elif i == PERMISSION_DENIED :
+    elif i == PERMISSION_DENIED:
         res['msg'] = 'Permission denied.'
-    elif i == INFORMATION_INCOMPLETE :
+    elif i == INFORMATION_INCOMPLETE:
         res['msg'] = 'Information incomplete.'
-    else :
+    else:
         res['msg'] = 'Unexpected exception.'
-    if (detail) :
+    if (detail):
         res['detail'] = detail
     return JSON(res)
