@@ -1,0 +1,1 @@
+['GEO', 'A.', 'HORMEL', 'lt', 'HRL', 'VOTES', 'TWO-FOR-ONE', 'SPLIT', 'Geo', 'A.', 'Hormel', 'Co', 'said', 'directors', 'voted', 'two-for-one', 'split', 'payable', 'June', 'one', 'record', 'April', '18']
