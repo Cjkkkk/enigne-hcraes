@@ -1,22 +1,24 @@
 # -*- coding: utf-8 -*-
 import nltk
-import os 
+import os
 from nltk.corpus import stopwords
-from InvertedIndex import forwardindex
+from invertedIndex.InvertedIndex import forwardindex
 
 counter = 0
 content = 0
 stopword_list = stopwords.words('english')
 
-def preprocessing(dir_addr='./Reuters',output_addr='./Result',stemming='False'):
+
+def preprocessing(dir_addr='./Reuters', output_addr='./Result', stemming='False'):
     Punctuation = list('''!@#$%^&*()_+-=[]\;',./{}|:"<>?''')
     file_list = os.listdir(dir_addr)
-    #order the file in acescend order
+    # order the file in acescend order
     file_list.sort(key=lambda x: int(x.split('.')[0]))
     for file_addr in file_list:
-        with open(dir_addr + '/' + file_addr) as f, open(output_addr+'/'+file_addr.split('.')[0]+'.txt','w+') as f_out:
-            res = handle_file(f,content)
-            if res==None:
+        with open(dir_addr + '/' + file_addr) as f, open(output_addr + '/' + file_addr.split('.')[0] + '.txt',
+                                                         'w+') as f_out:
+            res = handle_file(f, content)
+            if res == None:
                 continue
             for symbol in Punctuation:
                 try:
@@ -24,7 +26,7 @@ def preprocessing(dir_addr='./Reuters',output_addr='./Result',stemming='False'):
                         res.remove(symbol)
                 except ValueError:
                     pass
-            #短语检索是否需要去除停用词？
+            # 短语检索是否需要去除停用词？
             """
             for stop_word in stopword_list:
                 try:
@@ -34,12 +36,13 @@ def preprocessing(dir_addr='./Reuters',output_addr='./Result',stemming='False'):
                     pass
             """
             f_out.write(str(res))
-            #after thinking, I can only come up with the idea of putting this function here..
+            # after thinking, I can only come up with the idea of putting this function here..
             forwardindex(file_addr.split('.')[0], res)
 
-def handle_file(f,content):
+
+def handle_file(f, content):
     global counter
-    counter+=1
+    counter += 1
     try:
         content = f.read()
         if counter < 5:
@@ -50,4 +53,3 @@ def handle_file(f,content):
         return nltk.word_tokenize(content)
     else:
         return None
-

@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from termGenerator import preprocessing
-from InvertedIndex import *
+from invertedIndex.termGenerator import preprocessing
+from invertedIndex.InvertedIndex import invertedindex, GetInvertedIndex
+from vectorSpace.vectorSpace import *
 
 if __name__ == '__main__':
     preprocessing()
     invertedindex()
-    dict={}
-    dict=GetInvertedIndex(dict)
-
+    dict = {}
+    dict = GetInvertedIndex(dict)

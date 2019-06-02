@@ -45,13 +45,14 @@ body
 }
 #search-input:hover{
     transition: all 0.5s;
-    border-color: #a0a0a0 #b9b9b9 #b9b9b9 #b9b9b9;
-    box-shadow: 2px 2px 12px #888888;
+    /*border-color: #a0a0a0 #b9b9b9 #b9b9b9 #b9b9b9;*/
+    border-color: #b9b9b9 #b9b9b9 #b9b9b9 #b9b9b9;
+    box-shadow: 0px 0px 6px #888888;
 }
 #search-input:focus{
     transition: all 0.5s;
     border-color:#4d90fe;
-    box-shadow: 2px 2px 12px #4d90fe;
+    box-shadow: 0px 0px 6px #4d90fe;
 }
 
 button
