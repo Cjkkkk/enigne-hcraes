@@ -1,1 +1,0 @@
-['NEW', 'JERSEY', 'INVESTOR', 'BUYS', '5.2', 'PCT', 'OF', 'KINARK', 'lt', 'KIN', 'A', 'New', 'Jersey', 'investor', 'Joseph', 'Falkenstein', 'told', 'Securities', 'Exchange', 'Commission', 'holds', '5.2', 'pct', 'shares', 'Kinark', 'Corp', 'He', 'said', 'plans', 'change', 'company', 'bought', 'shares', 'believed', 'stock', 'undervalued', 'would', 'rise', 'next', 'six', 'months']

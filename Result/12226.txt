@@ -1,1 +1,0 @@
-['INSPEECH', 'lt', 'INSP', 'BUYS', 'NORMA', 'BORK', 'BORK', 'MEDICAL', 'Inspeech', 'Inc', 'said', 'acquired', 'Norma', 'Bork', 'Associates', 'Inc', 'Bork', 'Medical', 'Services', 'Inc', 'undisclosed', 'terms', 'These', 'firms', 'combined', 'revenues', 'one', 'mln', 'dlrs', 'providers', 'speech', 'pathology', 'physical', 'therapy', 'occupational', 'therapy', 'services']

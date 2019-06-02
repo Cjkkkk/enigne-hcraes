@@ -1,1 +1,0 @@
-['CORRECTED', 'FEDERAL', 'PAPER', 'BOARD', 'CO', 'lt', 'FBO', 'PAYOUT', 'Qtly', 'div', '17.5', 'cts', 'vs', '17.5', 'cts', 'prior', 'qtr', 'Payable', 'April', '15', 'Record', 'March', '31', 'Company', 'corrects', 'amount', 'previous', 'payment', 'MARCH', '18', 'item', 'show', 'change']

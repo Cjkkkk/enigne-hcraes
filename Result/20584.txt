@@ -1,1 +1,0 @@
-['TOTAL', 'CAPITAL', 'ACQUIRES', 'DUNHILL', 'COMPACT', 'lt', 'Total', 'Capital', 'Corp', 'said', 'acquired', 'lt', 'Dunhill', 'Compact', 'Classics', 'Inc', 'unspecified', 'amount', 'stock', 'The', 'surviving', 'company', 'controlled', "Dunhill's", 'principals', 'Total', 'Capital', 'said', 'Dunhill', 'makes', 'compact', 'discs']
