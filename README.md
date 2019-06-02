@@ -21,7 +21,8 @@ python main.py
 
 ## requirement
 
-要有数据集在根目录，有Result文件夹在根目录
+* 要有数据集在根目录，有Result文件夹在根目录
+* nltk下载`stopwords` `punkt`
 
 ## termGenerator.py
 
@@ -34,3 +35,7 @@ python main.py
 ## InvertedIndex.py
 
 InvertedIndex.txt为带位置信息的倒排索引dict输出，Hash表索引貌似就可以了？
+
+## 可能遇到的问题
+### conda can not find sqlite.dll
+复制从sqlite官网下载的sqlite.dll到conda虚拟环境的dll目录即可

@@ -9,7 +9,7 @@ content = 0
 stopword_list = stopwords.words('english')
 
 
-def preprocessing(dir_addr='./Reuters', output_addr='./Result', stemming='False'):
+def preprocessing(dir_addr='data', output_addr='result', stemming='False'):
     Punctuation = list('''!@#$%^&*()_+-=[]\;',./{}|:"<>?''')
     file_list = os.listdir(dir_addr)
     # order the file in acescend order

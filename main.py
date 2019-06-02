@@ -7,5 +7,4 @@ from vectorSpace.vectorSpace import *
 if __name__ == '__main__':
     preprocessing()
     invertedindex()
-    dict = {}
-    dict = GetInvertedIndex(dict)
+    dic = GetInvertedIndex()

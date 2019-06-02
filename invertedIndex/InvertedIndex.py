@@ -33,7 +33,7 @@ def invertedindex():
 
 
 def dict2txt():
-    pickle.dumps(inverted_index, open("InvertedIndex.p", "wb"))
+    pickle.dump(inverted_index, open("InvertedIndex.p", "wb"))
 
 
 def GetInvertedIndex():
