@@ -191,14 +191,13 @@ def search():
         print("More format is not supported now!")
 
 
-def main():
+def b_main():
     global InvertedIndex
     InvertedIndex = GetInvertedIndex(dict)
     while True:
         search()
 
-
 '''
 if __name__ == "__main__":
-    main()
+    b_main()
 '''
