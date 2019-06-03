@@ -37,7 +37,7 @@ python main.py
 InvertedIndex.txt为带位置信息的倒排索引dict输出，Hash表索引貌似就可以了？
 
 ## boolquery.py
-supporting A and B, A or B, A not B, A and B and C, A and B or C, A or B or C, A or B and C
+supporting bool query in forms of "A and B", "A or B", "A not B", "A and B and C", "A and B or C", "A or B or C", "A or B and C".
 
 ## 可能遇到的问题
 ### conda can not find sqlite.dll
