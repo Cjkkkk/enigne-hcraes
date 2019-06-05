@@ -30,11 +30,12 @@ def invertedindex():
                 inverted_index[word][docid] = words[word]
     sorted(inverted_index.keys())
     dict2txt()
+    return inverted_index
 
 
 def dict2txt():
     pickle.dump(inverted_index, open("InvertedIndex.p", "wb"))
 
 
-def GetInvertedIndex():
+def get_invertedIndex():
     return pickle.load(open("InvertedIndex.p", "rb"))
