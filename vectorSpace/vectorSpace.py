@@ -73,7 +73,8 @@ class VectorSpace:
         idf = self.cal_idf(df, self.N)
         tf = self.cal_tf(self.inverted_index, self.N)
         self.cal_wf(idf, tf, self.N)
-        pickle.dump(self.wf, open("VectorSpace.p", "wb"))
+        with open("VectorSpace.p", "wb") as f:
+            pickle.dump(self.wf, f)
 
     def cal_wf_norm(self):
         for doc_id in self.wf:
@@ -81,7 +82,8 @@ class VectorSpace:
             for term in self.wf[doc_id]:
                 sum += self.wf[doc_id][term] ** 2
             self.wf_norm[doc_id] = math.sqrt(sum)
-        pickle.dump(self.wf_norm, open("Wf_norm.p", "wb"))
+        with open("Wf_norm.p", "wb") as f:
+            pickle.dump(self.wf_norm, f)
 
     def load_wf_norm(self):
         self.wf_norm = pickle.load(open("Wf_norm.p", "rb"))
