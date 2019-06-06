@@ -47,11 +47,9 @@ python main.py  # 直接运行
 ```
 
 ### web服务器
-python run_server.py
-the web server will run, and you can browse the page in your browser.
 
 ```bash
-python server/runserver.py
+flask run
 ```
 
 ## 6 测试
