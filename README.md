@@ -53,3 +53,13 @@ the web server will run, and you can browse the page in your browser.
 ```bash
 python server/runserver.py
 ```
+
+## 6 测试
+```bash
+python -m unittest test.[filename]
+```
+
+测试向量空间
+```bash
+python -m unittest test.test_vector_space
+```
