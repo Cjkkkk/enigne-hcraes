@@ -18,7 +18,7 @@ def preprocessing(dir_addr='data', output_addr='result', stemming='False'):
         with open(dir_addr + '/' + file_addr) as f, open(output_addr + '/' + file_addr.split('.')[0] + '.txt',
                                                          'w+') as f_out:
             res = handle_file(f, content)
-            if res == None:
+            if res is None:
                 continue
             for symbol in Punctuation:
                 try:
@@ -35,7 +35,7 @@ def preprocessing(dir_addr='data', output_addr='result', stemming='False'):
                 except ValueError:
                     pass
             """
-            f_out.write(str(res))
+            # f_out.write(str(res))
             # after thinking, I can only come up with the idea of putting this function here..
             forwardindex(file_addr.split('.')[0], res)
 

@@ -12,9 +12,12 @@ inverted_index = {
         4: [1, 9, 20, 21]
     }
 }
-
 N = 5
-df = cal_df(inverted_index)
+
+df = {
+    "hello": 2,
+    "world": 3
+}
 idf = {
     "hello": math.log(N / df["hello"], 10),
     "world": math.log(N / df["world"], 10)
@@ -41,7 +44,7 @@ wf = {
         "world": idf["world"] * tf["world"][2]
     },
     3: {
-        "world": idf["world"] * tf["world"][3],
+        "world": idf["world"] * tf["world"][3]
     },
     4: {
         "world": idf["world"] * tf["world"][4]
@@ -50,17 +53,9 @@ wf = {
 
 
 class TestStringMethods(unittest.TestCase):
-    def test_cal_df(self):
-        self.assertEqual(df, cal_df(inverted_index))
-
-    def test_cal_idf(self):
-        self.assertEqual(idf, cal_idf(df, N))
-
-    def test_cal_tf(self):
-        self.assertEqual(tf, cal_tf(inverted_index, N))
-
     def test_cal_wf(self):
-        self.assertEqual(wf, cal_wf(idf, tf, N))
+        vector_space = VectorSpace(inverted_index, True, 5)
+        self.assertEqual(wf, vector_space.wf)
 
 
 if __name__ == '__main__':
