@@ -4,4 +4,4 @@ __pycache__/
 .idea/
 data/
 result/
-InvertedIndex.p
+*.p
