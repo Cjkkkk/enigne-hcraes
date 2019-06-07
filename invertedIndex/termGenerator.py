@@ -45,8 +45,6 @@ def handle_file(f, content):
     counter += 1
     try:
         content = f.read()
-        if counter < 5:
-            print(content)
     except UnicodeDecodeError:
         print(counter)
     if content:

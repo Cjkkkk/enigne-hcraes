@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Engine</title>
+    <link rel="stylesheet" href="../static/css/display.css">
+    <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.min.js"></script>
+</head>
+<body>
+    <div id="search-div">
+        <img id="logo" src="static/images/logo.png"/>
+        <input id="search-input" type="text" placeholder="Search for whatever you like..."/>
+    </div>
+    <div id="list">
+
+    </div>
+</body>
+
+<script>
+    var urlParams = new URLSearchParams(window.location.search);
+    //console.log(urlParams.has('key'));
+    //console.log(urlParams.get('key'));
+    const key = urlParams.get('key');
+    $('#search-input')[0].value = key;
+    $.get('http://localhost:5000/search_?key=' + key, function (data, status){
+        for(const idx in data['idx']) {
+            $('#list').append(
+            `<div class="item">
+                <h2><a href="data/${data['idx'][idx]}.html">${data['idx'][idx]}</a></h2>
+                <p>${data['content'][idx]}...</p>
+            </div>`)
+        }
+    })
+
+    $('#search-input').keyup(function (e) {
+        if (e.keyCode === 13) {
+            let key = $('#search-input')[0].value;
+            window.location.replace('http://localhost:5000/search?key=' + key );
+        }
+    });
+
+    </script>
+</html>

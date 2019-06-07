@@ -1,57 +1,24 @@
 <html>
 
 <head>
-    <title>Search Engine - ProjectAC</title>
+    <title>Search Engine</title>
     <link rel="stylesheet" href="../static/css/index.css">
     <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.min.js"></script>
 </head>
 
 <body>
-<!--<div class="block red">-->
-<!--This engine is temporarily under training & testing. <br/>-->
-<!--Now it is only for Shakespeare's Collections.-->
-<!--</div>-->
 
 <div id="search-div">
     <img id="logo" src="static/images/logo.png"/>
     <input id="search-input" type="text" placeholder="Search for whatever you like..."/>
 </div>
 
-<div id="results">
-    <a href="data/0.html">click me</a>
-</div>
 </body>
 <script>
-    function query()
-    {
-        $('#results')[0].innerHTML = 'Searching, please wait...'
-
-        var begin = new Date()
-        let key = $('#key')[0].value
-
-        $.get('http://localhost:23333/query?key=' + key, function (data, status){
-
-            var end = new Date();
-            let res = '<div style="margin-bottom:30px;">' + data.length + ' related records found in ' + (end.valueOf() - begin.valueOf())  + 'ms. </div>'
-
-            console.log(res)
-
-            for (let x of data)
-            {
-                res += '\
-                    <a href="http://' + x[0][2]+'">\
-                        <div class="result">\
-                            ' + x[0][1] + '<br/>\
-                            <font>' + x[0][2] +'</font>\
-                        </div>\
-                    </a>'
-                }
-                $('#results')[0].innerHTML = res
-            })
-        }
     $('#search-input').keyup(function (e) {
         if (e.keyCode === 13) {
-            alert('ya!')
+            let key = $('#search-input')[0].value;
+            window.location.replace('http://localhost:5000/search?key=' + key );
         }
     });
 

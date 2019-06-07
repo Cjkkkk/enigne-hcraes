@@ -7,9 +7,9 @@ import numpy as np
 class VectorSpace:
     wf = {}
     wf_norm = {}
-    N = 0
     inverted_index = {}
     mapping = {}
+    N = 0
     ''' 构造vector space
         :param inverted_index {} 倒排索引
         :param build bool 是否重新构建向量空间
