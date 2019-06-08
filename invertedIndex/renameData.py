@@ -4,7 +4,7 @@ import os
 # Function to rename multiple files
 def rename():
     i = 0
-    path = os.path.join(os.path.dirname(__file__), "..\data")
+    path = os.path.join(os.path.dirname(__file__), "../data")
     if not os.path.isdir(path):
         raise OSError("can not find directory {0}".format(path))
     files = os.listdir(path)
