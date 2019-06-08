@@ -9,6 +9,11 @@
 <body>
     <div id="search-div">
         <img id="logo" src="static/images/logo.png"/>
+        <form>
+            <input type="radio" name="radiobtn" value="0" checked> 向量空间模型TopK查询<br>
+            <input type="radio" name="radiobtn" value="1"> 布尔查询<br>
+            <input type="radio" name="radiobtn" value="2"> 短语查询
+        </form>
         <input id="search-input" type="text" placeholder="Search for whatever you like..."/>
     </div>
     <div id="list">
@@ -21,8 +26,17 @@
     //console.log(urlParams.has('key'));
     //console.log(urlParams.get('key'));
     const key = urlParams.get('key');
+    const searchtypeid=urlParams.get('searchtypeid');
+    var radiobtns=document.getElementsByName("radiobtn");
+    for(let i=0;i<radiobtns.length;i++){
+        if(radiobtns[i].value===searchtypeid){
+            radiobtns[i].checked=true;
+            break;
+        }
+    }
+
     $('#search-input')[0].value = key;
-    $.get('http://localhost:5000/search_?key=' + key, function (data, status){
+    $.get('http://localhost:5000/search_?key=' + key+'&searchtypeid='+searchtypeid, function (data, status){
         for(const idx in data['idx']) {
             $('#list').append(
             `<div class="item">
@@ -30,12 +44,20 @@
                 <p>${data['content'][idx]}...</p>
             </div>`)
         }
-    })
+    });
+
 
     $('#search-input').keyup(function (e) {
         if (e.keyCode === 13) {
             let key = $('#search-input')[0].value;
-            window.location.replace('http://localhost:5000/search?key=' + key );
+            let againsearchtypeid;
+            for(let i=0;i<radiobtns.length;i++){
+                if(radiobtns[i].checked){
+                againsearchtypeid=radiobtns[i].value;
+                break;
+                }
+            }
+            window.location.replace('http://localhost:5000/search?key=' + key+'&searchtypeid='+againsearchtypeid);
         }
     });
 
