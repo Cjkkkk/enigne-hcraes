@@ -30,8 +30,9 @@ def search_():
     searchtype=int(request.args.get('searchtypeid'))
     if searchtype==0:#向量空间模型TopK查询
         idx = current_app.vector_space.cal_k_relevant(10, words).tolist()
-    elif searchtype==1:#布尔查询 未完
-        idx = current_app.vector_space.cal_k_relevant(10, words)
+    elif searchtype==1:#布尔查询
+        current_app.bool_query.search(words)
+        idx = current_app.bool_query.getqueryresult()
     elif searchtype==2:#短语查询
         current_app.phrase_query.cal_PhraseQueryResult(words)
         idx=current_app.phrase_query.getPhraseQueryResult()
