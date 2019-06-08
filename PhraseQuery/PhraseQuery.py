@@ -25,7 +25,6 @@ class PhraseQuery:
         if length == 0:
             return
         self.unionSet = lists[ascendingIndex[0]]
-        print()
         if length > 1:
             for i, index in enumerate(ascendingIndex, 1):
                 self.unionSet = list(set(self.unionSet).intersection(set(lists[index])))
