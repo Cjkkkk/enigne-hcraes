@@ -7,6 +7,7 @@ from invertedIndex.renameData import rename
 from vectorSpace.vectorSpace import VectorSpace
 from PhraseQuery.PhraseQuery import PhraseQuery
 from boolquery.boolquery import BoolQuery
+from spellingCorrection.spellingCorrection import SpellingCorrection
 
 
 def create_app():
@@ -41,10 +42,12 @@ def create_app():
         vector_space = VectorSpace(dic, False)
         phrase_query=PhraseQuery(dic)
         bool_query=BoolQuery(dic)
+        spelling_correction=SpellingCorrection(dic)
     # register blueprints
     app.vector_space = vector_space
     app.phrase_query=phrase_query
     app.bool_query=bool_query
+    app.spelling_correction=spelling_correction
     app.register_blueprint(main)
 
     return app
