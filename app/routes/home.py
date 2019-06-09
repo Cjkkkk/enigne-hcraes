@@ -25,8 +25,9 @@ def search():
 def search_():
 
     data = request.args.get('key')
-    words = data.split(" ")
-
+    words_o = data.split(" ")
+    current_app.spelling_correction.correct(words_o)#拼写矫正
+    words=current_app.spelling_correction.getcorrectionresult()
     searchtype=int(request.args.get('searchtypeid'))
     if searchtype==0:#向量空间模型TopK查询
         idx = current_app.vector_space.cal_k_relevant(10, words).tolist()
@@ -43,4 +44,4 @@ def search_():
     for i in idx:
         with open(os.path.join(root_dir, 'data/{0}.html'.format(i)), "r") as f:
             content.append(f.read(200))
-    return jsonify({"idx": idx, 'content': content}), 200
+    return jsonify({"idx": idx, 'content': content, 'words': words, 'words_o': words_o}), 200
