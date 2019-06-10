@@ -1,5 +1,6 @@
 import numpy as np
 import pickle
+import difflib
 
 
 class SpellingCorrection:
@@ -33,10 +34,14 @@ class SpellingCorrection:
                 suggestion0=w1[i]
             else:
                 for w2 in self.inverted_index:
-                    dis=self.edit_distance(w1[i], w2)
-                    if dis<min:
-                        min=dis
-                        suggestion0=w2
+                    seq=difflib.SequenceMatcher(None,w2,w1[i]).quick_ratio()
+                    if seq>0.7:
+                        dis=self.edit_distance(w1[i], w2)
+                        if dis<min:
+                            min=dis
+                            suggestion0=w2
+                        else:
+                            continue
                     else:
                         continue
             self.suggestion.append(suggestion0)
