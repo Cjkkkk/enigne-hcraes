@@ -35,7 +35,7 @@ class VectorSpace:
 
     ''' 计算文档数目 '''
     def cal_N(self):
-        path = os.path.join(os.path.dirname(__file__), "..\data")
+        path = os.path.join(os.path.dirname(__file__), "../data")
         if not os.path.isdir(path):
             raise OSError("can not find directory {0}".format(path))
         self.N = len(os.listdir(path))
@@ -104,7 +104,10 @@ class VectorSpace:
         for term in vec:
             if term in self.wf[doc_id]:
                 dot_product += self.wf[doc_id][term]
-        cos = dot_product / (self.wf_norm[doc_id] * vec_norm)
+        if self.wf_norm[doc_id] * vec_norm==0:
+            cos=0
+        else:
+            cos = dot_product / (self.wf_norm[doc_id] * vec_norm)
         return cos
 
     ''' 返回top k最相关的文档索引 '''

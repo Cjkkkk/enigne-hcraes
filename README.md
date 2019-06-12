@@ -1,6 +1,7 @@
 # engine-hcraes
 ## 1 运行依赖
 you can see all the requirements in `requirements.txt`, then you can install them by pip.
+
 ### using pip
 ```bash
 pip install -r requirements.txt
@@ -8,7 +9,7 @@ pip install -r requirements.txt
 
 ## 2 运行要求
 
-* 要有数据集在根目录，有Result文件夹在根目录
+* 要有数据集在根目录，数据集重命明为data,result文件夹在根目录
 * nltk下载`stopwords` `punkt`
 
 ## 3 文件说明
@@ -18,11 +19,11 @@ pip install -r requirements.txt
 
 ### termGenerator
 
-该文件的主要作用在于原始文档的处理，Result是结果输出，形式是python的list。再次读入的时候使用python的eval函数即可。
+该文件的主要作用在于原始文档的处理，result是结果输出，形式是python的list。再次读入的时候使用python的eval函数即可。
 
 ### InvertedIndex
 
-InvertedIndex.txt为带位置信息的倒排索引dict输出，Hash表索引貌似就可以了？
+InvertedIndex.txt为带位置信息的倒排索引dict输出，使用Hash表索引
 
 ### boolquery
 supporting bool query in forms of "A and B", "A or B", "A not B", "A and B and C", "A and B or C", "A or B or C", "A or B and C".
@@ -47,6 +48,14 @@ python main.py  # 直接运行
 ```
 
 ### web服务器
+
+输入
+
+```bash
+pip install python-dotenv
+```
+ 
+使用.env
 
 ```bash
 flask run

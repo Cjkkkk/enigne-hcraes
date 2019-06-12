@@ -9,6 +9,11 @@
 <body>
     <div id="search-div">
         <img id="logo" src="static/images/logo.png"/>
+        <form>
+            <input type="radio" name="radiobtn" value="0" checked> 向量空间模型TopK查询<br>
+            <input type="radio" name="radiobtn" value="1"> 布尔查询<br>
+            <input type="radio" name="radiobtn" value="2"> 短语查询
+        </form>
         <input id="search-input" type="text" placeholder="Search for whatever you like..."/>
     </div>
     <div id="list">
@@ -21,12 +26,34 @@
     //console.log(urlParams.has('key'));
     //console.log(urlParams.get('key'));
     const key = urlParams.get('key');
+    const searchtypeid=urlParams.get('searchtypeid');
+    var radiobtns=document.getElementsByName("radiobtn");
+    for(let i=0;i<radiobtns.length;i++){
+        if(radiobtns[i].value===searchtypeid){
+            radiobtns[i].checked=true;
+            break;
+        }
+    }
+
     $('#search-input')[0].value = key;
-    $.get('http://localhost:5000/search_?key=' + key, function (data, status){
-        $('#list').append(
-            `<div class="item" id="correct">
-                <h3>Showing results forp ...</h3>
-            </div>`)
+    $.get('http://localhost:5000/search_?key=' + key+'&searchtypeid='+searchtypeid, function (data, status){
+        console.log(data);
+        let show_correction = false;
+        for(const i in data['words']) {
+            if(data['words'][i] != data['words_o'][i]) {
+
+                show_correction = true;
+                data['words'][i] = `<b>${data['words'][i]}</b>`
+            }
+        }
+
+        if(show_correction) {
+            $('#list').append(
+                `<div class="item" id="correct">
+                    <p>Showing results for ${data['words'].join(" ")}</p>
+                    <p>Search instead for ${data['words_o'].join(" ")}</p>
+                </div>`)
+        }
         for(const idx in data['idx']) {
             $('#list').append(
             `<div class="item">
@@ -34,12 +61,20 @@
                 <p>${data['content'][idx]}...</p>
             </div>`)
         }
-    })
+    });
+
 
     $('#search-input').keyup(function (e) {
         if (e.keyCode === 13) {
             let key = $('#search-input')[0].value;
-            window.location.replace('http://localhost:5000/search?key=' + key );
+            let againsearchtypeid;
+            for(let i=0;i<radiobtns.length;i++){
+                if(radiobtns[i].checked){
+                againsearchtypeid=radiobtns[i].value;
+                break;
+                }
+            }
+            window.location.replace('http://localhost:5000/search?key=' + key+'&searchtypeid='+againsearchtypeid);
         }
     });
 

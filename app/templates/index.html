@@ -10,6 +10,11 @@
 
 <div id="search-div">
     <img id="logo" src="static/images/logo.png"/>
+    <form>
+        <input type="radio" name="radiobtn" value="0" checked> 向量空间模型TopK查询<br>
+        <input type="radio" name="radiobtn" value="1"> 布尔查询<br>
+        <input type="radio" name="radiobtn" value="2"> 短语查询
+    </form>
     <input id="search-input" type="text" placeholder="Search for whatever you like..."/>
 </div>
 
@@ -18,7 +23,15 @@
     $('#search-input').keyup(function (e) {
         if (e.keyCode === 13) {
             let key = $('#search-input')[0].value;
-            window.location.replace('http://localhost:5000/search?key=' + key );
+            let searchtypeid;
+            var radiobtns=document.getElementsByName("radiobtn");
+            for(let i=0;i<radiobtns.length;i++){
+                if(radiobtns[i].checked){
+                    searchtypeid=radiobtns[i].value;
+                    break;
+                }
+            }
+            window.location.replace('http://localhost:5000/search?key=' + key+'&searchtypeid='+searchtypeid);
         }
     });
 

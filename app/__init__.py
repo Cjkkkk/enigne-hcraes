@@ -5,6 +5,9 @@ from invertedIndex.termGenerator import preprocessing
 from invertedIndex.InvertedIndex import get_invertedIndex, invertedindex
 from invertedIndex.renameData import rename
 from vectorSpace.vectorSpace import VectorSpace
+from PhraseQuery.PhraseQuery import PhraseQuery
+from boolquery.boolquery import BoolQuery
+from spellingCorrection.spellingCorrection import SpellingCorrection
 
 
 def create_app():
@@ -37,8 +40,16 @@ def create_app():
         # 构建好vectorSpace和InvertedIndex
         dic = get_invertedIndex()
         vector_space = VectorSpace(dic, False)
-    # register blueprints
+
+    phrase_query = PhraseQuery(dic)
+    bool_query = BoolQuery(dic)
+    spelling_correction = SpellingCorrection(dic)
     app.vector_space = vector_space
+    app.phrase_query = phrase_query
+    app.bool_query = bool_query
+    app.spelling_correction = spelling_correction
+
+    # register blueprints
     app.register_blueprint(main)
 
     return app
