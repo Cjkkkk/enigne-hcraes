@@ -47,3 +47,9 @@ a {
 p {
     text-align: justify;
 }
+
+#correct {
+    color: #8B0000;
+    font-style: italic;
+    font-weight: 300;
+}

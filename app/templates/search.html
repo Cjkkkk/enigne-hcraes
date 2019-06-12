@@ -23,6 +23,10 @@
     const key = urlParams.get('key');
     $('#search-input')[0].value = key;
     $.get('http://localhost:5000/search_?key=' + key, function (data, status){
+        $('#list').append(
+            `<div class="item" id="correct">
+                <h3>Showing results for ...</h3>
+            </div>`)
         for(const idx in data['idx']) {
             $('#list').append(
             `<div class="item">
