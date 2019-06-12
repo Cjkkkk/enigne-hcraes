@@ -5,7 +5,7 @@ from invertedIndex.termGenerator import preprocessing
 from invertedIndex.InvertedIndex import get_invertedIndex, invertedindex
 from invertedIndex.renameData import rename
 from vectorSpace.vectorSpace import VectorSpace
-from PhraseQuery.PhraseQuery import PhraseQuery
+from phraseQuery.phraseQuery import PhraseQuery
 from boolquery.boolquery import BoolQuery
 from spellingCorrection.spellingCorrection import SpellingCorrection
 
