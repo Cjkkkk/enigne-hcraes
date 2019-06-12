@@ -25,7 +25,7 @@
     $.get('http://localhost:5000/search_?key=' + key, function (data, status){
         $('#list').append(
             `<div class="item" id="correct">
-                <h3>Showing results for ...</h3>
+                <h3>Showing results forp ...</h3>
             </div>`)
         for(const idx in data['idx']) {
             $('#list').append(
