@@ -40,7 +40,8 @@ def search_():
     # 读取文件
     root_dir = os.getcwd()
     content = []
-    for i in idx:
-        with open(os.path.join(root_dir, 'data/{0}.html'.format(i)), "r") as f:
+    files = [current_app.doc_id_map['id_to_doc'][i] for i in idx]
+    for file in files:
+        with open(os.path.join(root_dir, 'data/{0}.html'.format(file)), "r") as f:
             content.append(f.read(200))
-    return jsonify({"idx": idx, 'content': content, 'words': words, 'words_o': words_o}), 200
+    return jsonify({"idx": files, 'content': content, 'words': words, 'words_o': words_o}), 200

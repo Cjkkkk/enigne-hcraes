@@ -3,7 +3,7 @@ from flask import Flask
 from app.routes.home import main
 from invertedIndex.termGenerator import preprocessing
 from invertedIndex.InvertedIndex import get_invertedIndex, invertedindex
-from invertedIndex.renameData import rename
+from invertedIndex.renameData import get_doc_id_mapping, doc_id_mapping
 from vectorSpace.vectorSpace import VectorSpace
 from phraseQuery.phraseQuery import PhraseQuery
 from boolquery.boolquery import BoolQuery
@@ -32,12 +32,12 @@ def create_app():
 
     build = app.config['BUILD']
     if build:
-        rename()
-        preprocessing()
-        dic = invertedindex()
+        doc_id_map = doc_id_mapping()
+        dic = invertedindex(doc_id_map)
         vector_space = VectorSpace(dic, True)
     else:
         # 构建好vectorSpace和InvertedIndex
+        doc_id_map = get_doc_id_mapping()
         dic = get_invertedIndex()
         vector_space = VectorSpace(dic, False)
 
@@ -48,7 +48,7 @@ def create_app():
     app.phrase_query = phrase_query
     app.bool_query = bool_query
     app.spelling_correction = spelling_correction
-
+    app.doc_id_map = doc_id_map
     # register blueprints
     app.register_blueprint(main)
 

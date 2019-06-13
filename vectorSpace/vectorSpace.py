@@ -14,6 +14,7 @@ class VectorSpace:
         :param inverted_index {} 倒排索引
         :param build bool 是否重新构建向量空间
     '''
+
     def __init__(self, inverted_index, build, N=None):
         self.inverted_index = inverted_index
         if N:
@@ -30,10 +31,12 @@ class VectorSpace:
             # self.load_term_to_id()
 
     ''' 从文件中加载vector space '''
+
     def load_vector_space(self):
         self.wf = pickle.load(open("VectorSpace.p", "rb"))
 
     ''' 计算文档数目 '''
+
     def cal_N(self):
         path = os.path.join(os.path.dirname(__file__), "../data")
         if not os.path.isdir(path):
@@ -68,6 +71,7 @@ class VectorSpace:
                 self.wf[doc_id][term] = idf[term] * tf[term][doc_id]
 
     ''' 构建vector space并将结果存储在文件中 '''
+
     def build_vector_space(self):
         df = self.cal_df(self.inverted_index)
         idf = self.cal_idf(df, self.N)
@@ -87,6 +91,7 @@ class VectorSpace:
 
     def load_wf_norm(self):
         self.wf_norm = pickle.load(open("Wf_norm.p", "rb"))
+
     # def build_term_to_id(self):
     #     self.mapping = {}
     #     idx = 0
@@ -98,19 +103,21 @@ class VectorSpace:
     # def load_term_to_id(self):
     #     self.mapping = pickle.load(open("TermMapping.p", "rb"))
     '''计算余弦'''
+
     def cal_cos(self, doc_id, vec):
         vec_norm = math.sqrt(len(vec))
         dot_product = 0
         for term in vec:
             if term in self.wf[doc_id]:
                 dot_product += self.wf[doc_id][term]
-        if self.wf_norm[doc_id] * vec_norm==0:
-            cos=0
+        if self.wf_norm[doc_id] * vec_norm == 0:
+            cos = 0
         else:
             cos = dot_product / (self.wf_norm[doc_id] * vec_norm)
         return cos
 
     ''' 返回top k最相关的文档索引 '''
+
     def cal_k_relevant(self, k, vec):
         cos = np.array([self.cal_cos(i, vec) for i in range(self.N)])
         idx = np.argpartition(cos, -k)[-k:]

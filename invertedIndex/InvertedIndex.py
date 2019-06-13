@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 import pickle
-
+import os
+from invertedIndex.termGenerator import preprocessing
 forward_index = {}
 inverted_index = {}
+dir_addr = 'data'
 
 
-def forwardindex(filename, res):
-    index = int(filename)
+def forwardindex(filename, res, doc_id_map):
+    index = doc_id_map['doc_to_id'][filename]
     forward_index[index] = {}
     for i, word in enumerate(res):
         if str(word) not in forward_index[index].keys():
@@ -20,7 +22,12 @@ def forwardindex(filename, res):
 """
 
 
-def invertedindex():
+def invertedindex(doc_id_map):
+    file_list = os.listdir(dir_addr)
+    file_list.sort(key=lambda x: int(x.split('.')[0]))
+    for file_addr in file_list:
+        res = preprocessing(dir_addr + '/' + file_addr)
+        forwardindex(file_addr.split('.')[0], res, doc_id_map)
     for docid, words in forward_index.items():
         for word in words.keys():
             if word not in inverted_index.keys():
