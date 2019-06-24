@@ -39,7 +39,6 @@
     $('#search-input')[0].value = key;
     $.get('http://localhost:5000/search_?key=' + key+'&searchtypeid='+searchtypeid, function (data, status){
         console.log(data);
-        if(searchtypeid!=3){
             let show_correction = false;
         for(const i in data['words']) {
             if(data['words'][i] != data['words_o'][i]) {
@@ -48,14 +47,12 @@
                 data['words'][i] = `<b>${data['words'][i]}</b>`
             }
         }
-
         if(show_correction) {
             $('#list').append(
                 `<div class="item" id="correct">
                     <p>Showing results for ${data['words'].join(" ")}</p>
                     <p>Search instead for ${data['words_o'].join(" ")}</p>
                 </div>`)
-        }
         }
         console.log("results：")
         for(const idx in data['idx']) {
