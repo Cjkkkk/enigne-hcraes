@@ -11,12 +11,17 @@ stopword_list = stopwords.words('english')
 def preprocessing(filename, stemming='False'):
     with open(filename) as f:
         res = handle_file(f, content)
-        for symbol in Punctuation:
-            try:
-                while True:
-                    res.remove(symbol)
-            except ValueError:
-                pass
+        if res:
+            for symbol in Punctuation:
+                try:
+                    while True:
+                        res.remove(symbol)
+                except ValueError:
+                    pass
+            return res
+        else:
+            return None
+        
         # 短语检索是否需要去除停用词？
         """
         for stop_word in stopword_list:
@@ -26,7 +31,7 @@ def preprocessing(filename, stemming='False'):
             except ValueError:
                 pass
         """
-        return res
+        
 
 
 def handle_file(f, content):

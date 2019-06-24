@@ -10,12 +10,14 @@ dir_addr = 'data'
 def forwardindex(filename, res, doc_id_map):
     index = doc_id_map['doc_to_id'][filename]
     forward_index[index] = {}
-    for i, word in enumerate(res):
-        if str(word) not in forward_index[index].keys():
-            forward_index[index][str(word)] = [i]
-        else:
-            forward_index[index][str(word)].append(i)
+    if res:
+        for i, word in enumerate(res):
+            if str(word) not in forward_index[index].keys():
+                forward_index[index][str(word)] = [i]
+            else:
+                forward_index[index][str(word)].append(i)
 
+    
 
 """
 {word1:{docid1:pos1,pos2,...;docid2:pos1,pos2,...},word2:{}}
