@@ -15,6 +15,8 @@ class WildcardQuery:
         self.inverted_index=inverted_index
 
     def cal_WildcardQueryResult(self,words):
+        self.matches = []
+        self.wildcardID = []
         self.queryresult = []
         self.finalqueryresult = []
         matchstr = "[a-zA-Z0-9-]+"
@@ -129,7 +131,7 @@ class WildcardQuery:
 if __name__ == "__main__":
 
     #words=["*ased","on","preliminary","results"]
-    words=["extra*","loss"]
+    words=["*relimi*","*esult*"]
     dict= pickle.load(open("../InvertedIndex.p", "rb"))
     wildcardquery=WildcardQuery(dict)
     wildcardquery.cal_WildcardQueryResult(words)

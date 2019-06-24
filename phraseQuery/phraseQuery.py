@@ -31,6 +31,7 @@ class PhraseQuery:
 
     def cal_PhraseQueryResult(self,words):
         self.queryresult = []
+        self.unionSet=[]
         self.cal_unionSet(words)
         if len(self.unionSet)>0:
             for docid in self.unionSet:
