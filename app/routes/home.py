@@ -24,10 +24,15 @@ def search():
 @main.route('/search_', methods=['GET'])
 def search_():
     data = request.args.get('key')
+    print(data)
     words_o = data.split(" ")
     current_app.spelling_correction.correct(words_o)  # 拼写矫正
-    words = current_app.spelling_correction.getcorrectionresult()
     searchtype = int(request.args.get('searchtypeid'))
+    if searchtype>=0 and searchtype<=2:
+        words = current_app.spelling_correction.getcorrectionresult()#通配符不进行拼写矫正
+    else:
+        words=words_o[:]
+
     if searchtype == 0:  # 向量空间模型TopK查询
         idx = current_app.vector_space.cal_k_relevant(10, words).tolist()
     elif searchtype == 1:  # 布尔查询
@@ -36,6 +41,9 @@ def search_():
     elif searchtype == 2:  # 短语查询
         current_app.phrase_query.cal_PhraseQueryResult(words)
         idx = current_app.phrase_query.getPhraseQueryResult()
+    elif searchtype == 3:  # 通配符查询
+        current_app.wildcard_query.cal_WildcardQueryResult(words_o)
+        idx = current_app.wildcard_query.getWildcardQueryResult()
 
     # 读取文件
     root_dir = os.getcwd()

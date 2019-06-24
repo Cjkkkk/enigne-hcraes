@@ -8,7 +8,7 @@ from vectorSpace.vectorSpace import VectorSpace
 from phraseQuery.phraseQuery import PhraseQuery
 from boolquery.boolquery import BoolQuery
 from spellingCorrection.spellingCorrection import SpellingCorrection
-
+from wildcardQuery.wildcardQuery import WildcardQuery
 
 def create_app():
     """
@@ -44,11 +44,14 @@ def create_app():
     phrase_query = PhraseQuery(dic)
     bool_query = BoolQuery(dic)
     spelling_correction = SpellingCorrection(dic)
+    wildcard_query=WildcardQuery(dic)
+
     app.vector_space = vector_space
     app.phrase_query = phrase_query
     app.bool_query = bool_query
     app.spelling_correction = spelling_correction
     app.doc_id_map = doc_id_map
+    app.wildcard_query=wildcard_query
     # register blueprints
     app.register_blueprint(main)
 

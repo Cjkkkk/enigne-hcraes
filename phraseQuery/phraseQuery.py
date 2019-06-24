@@ -62,12 +62,15 @@ class PhraseQuery:
 #TEST
 
 """
+
 if __name__ == "__main__":
 
     words=["Based","on","preliminary","results"]
     dict= pickle.load(open("../InvertedIndex.p", "rb"))
-    phrasequery=phraseQuery(dict)
+    phrasequery=PhraseQuery(dict)
     phrasequery.cal_PhraseQueryResult(words)
     print(phrasequery.getPhraseQueryResult()) #
+
+
 
 """
