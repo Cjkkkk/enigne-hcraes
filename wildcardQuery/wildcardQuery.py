@@ -121,7 +121,7 @@ class WildcardQuery:
             return
         return
 
-
+"""
 
 if __name__ == "__main__":
 
@@ -134,3 +134,5 @@ if __name__ == "__main__":
     for id in wildcardquery.getWildcardQueryResult():
         print(doc_id_map['id_to_doc'][id])
 
+
+"""

@@ -52,4 +52,5 @@ def search_():
     for file in files:
         with open(os.path.join(root_dir, 'data/{0}.html'.format(file)), "r") as f:
             content.append(f.read(200))
+
     return jsonify({"idx": files, 'content': content, 'words': words, 'words_o': words_o}), 200
