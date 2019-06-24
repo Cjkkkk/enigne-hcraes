@@ -46,9 +46,11 @@ def search_():
         idx = current_app.wildcard_query.getWildcardQueryResult()
 
     # 读取文件
+
     root_dir = os.getcwd()
     content = []
     files = [current_app.doc_id_map['id_to_doc'][i] for i in idx]
+    print(files)
     for file in files:
         with open(os.path.join(root_dir, 'data/{0}.html'.format(file)), "r") as f:
             content.append(f.read(200))

@@ -15,6 +15,8 @@ class WildcardQuery:
         self.inverted_index=inverted_index
 
     def cal_WildcardQueryResult(self,words):
+        self.queryresult = []
+        self.finalqueryresult = []
         matchstr = "[a-zA-Z0-9-]+"
         lists = []
         listslength = []
@@ -100,6 +102,7 @@ class WildcardQuery:
                 self.finalqueryresult = list(set(self.finalqueryresult).union(set(self.queryresult)))  # 取并
 
     def getWildcardQueryResult(self):
+        print(self.finalqueryresult)
         return self.finalqueryresult
 
     def search(self, words, wordsid, docid, nextposid=None):
@@ -121,18 +124,15 @@ class WildcardQuery:
             return
         return
 
-"""
+
 
 if __name__ == "__main__":
 
     #words=["*ased","on","preliminary","results"]
-    words=["extra*","lo*"]
+    words=["extra*","loss"]
     dict= pickle.load(open("../InvertedIndex.p", "rb"))
     wildcardquery=WildcardQuery(dict)
     wildcardquery.cal_WildcardQueryResult(words)
     doc_id_map = pickle.load(open("../doc_id_mapping.p", "rb"))
     for id in wildcardquery.getWildcardQueryResult():
         print(doc_id_map['id_to_doc'][id])
-
-
-"""
